@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:pokedex_v2/src/core/components/card_pokemon_component.dart';
 import 'package:pokedex_v2/src/core/components/status_bar_component.dart';
 import 'package:pokedex_v2/src/core/components/text_filed_component.dart';
 import 'package:pokedex_v2/src/core/theme/app_extension.dart';
@@ -37,8 +38,10 @@ class PokemonListPage extends GetView<PokemonListController> {
                 const SizedBox(
                   height: AppDimension.size_3,
                 ),
-                const TextFiledComponent(
+                TextFiledComponent(
                   hint: 'Procure seu pokemon',
+                  controller: controller.nameEC,
+                  func: (_) => controller.getPokemonByName(),
                 ),
                 const SizedBox(
                   height: AppDimension.size_5,
@@ -48,9 +51,13 @@ class PokemonListPage extends GetView<PokemonListController> {
                     child: ListView.separated(
                       itemBuilder: (_, int index) {
                         final PokemonModel pokemon = controller.pokemons[index];
-                        return Text(pokemon.name);
+                        return CardPokemonComponent(
+                          pokemon: pokemon,
+                        );
                       },
-                      separatorBuilder: (_, __) => const Divider(),
+                      separatorBuilder: (_, __) => const SizedBox(
+                        height: AppDimension.size_2,
+                      ),
                       itemCount: controller.pokemons.length,
                     ),
                   ),

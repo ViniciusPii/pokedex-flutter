@@ -9,9 +9,13 @@ class TextFiledComponent extends StatelessWidget {
   const TextFiledComponent({
     Key? key,
     required this.hint,
+    required this.func,
+    required this.controller,
   }) : super(key: key);
 
   final String hint;
+  final Function(String?) func;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +42,8 @@ class TextFiledComponent extends StatelessWidget {
         ),
         fillColor: AppColors.neutral.shade100,
       ),
+      controller: controller,
+      onChanged: func,
     );
   }
 }

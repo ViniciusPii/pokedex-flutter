@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^2.3.1
   get: ^4.6.1
+  cached_network_image: ^3.2.0
+  palette_generator: ^0.3.3
 
 dev_dependencies:
   flutter_test:
@@ -61,6 +63,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/images/
     - assets/pokemons.json
   #   - images/a_dot_ham.jpeg
 
