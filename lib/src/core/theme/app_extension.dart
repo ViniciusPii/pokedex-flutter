@@ -19,5 +19,5 @@ class AppExtension {
   static Color textLightColor = AppColors.neutral.shade500;
 
   //Font
-  static String? fontFamily = GoogleFonts.lato().fontFamily;
+  static String? fontFamily = GoogleFonts.montserrat().fontFamily;
 }

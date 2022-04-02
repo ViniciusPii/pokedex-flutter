@@ -5,7 +5,9 @@ class PokemonListBindings implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut(
-      () => PokemonListController(),
+      () => PokemonListController(
+        pokemonService: Get.find(),
+      ),
     );
   }
 }

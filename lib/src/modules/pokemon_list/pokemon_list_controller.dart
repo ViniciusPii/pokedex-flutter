@@ -1,3 +1,24 @@
 import 'package:get/get.dart';
+import 'package:pokedex_v2/src/models/pokemon_model.dart';
 
-class PokemonListController extends GetxController {}
+import 'package:pokedex_v2/src/services/pokemon/pokemon_service.dart';
+
+class PokemonListController extends GetxController {
+  PokemonListController({
+    required PokemonService pokemonService,
+  }) : _pokemonService = pokemonService;
+
+  final PokemonService _pokemonService;
+
+  final RxList<PokemonModel> _pokemons = RxList();
+
+  List<PokemonModel> get pokemons => _pokemons;
+
+  @override
+  void onInit() {
+    super.onInit();
+    getAll();
+  }
+
+  Future<void> getAll() async => _pokemons(await _pokemonService.getAll());
+}
