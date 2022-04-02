@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import 'package:pokedex_v2/src/core/theme/app_dimension.dart';
+import 'package:pokedex_v2/src/core/theme/app_extension.dart';
 import 'package:pokedex_v2/src/core/theme/app_fonts.dart';
 import 'package:pokedex_v2/src/core/theme/app_type_pokemon_style.dart';
 import 'package:pokedex_v2/src/models/pokemon_model.dart';
@@ -57,6 +58,11 @@ class CardPokemonComponent extends StatelessWidget {
                       pokemon.name,
                       style: AppFonts.bodyLarge(),
                     ),
+                    Row(
+                      children: [
+                        ..._buildTypes(),
+                      ],
+                    )
                   ],
                 ),
                 CachedNetworkImage(
@@ -69,5 +75,23 @@ class CardPokemonComponent extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  List<Widget> _buildTypes() {
+    List<Widget> types = [];
+
+    pokemon.typeofpokemon
+        .map(
+          (e) => types.add(
+            Image.asset(
+              AppTypePokemonStyle.typePokemon[e]['img'],
+              height: AppDimension.size_3,
+              color: AppExtension.textColor,
+            ),
+          ),
+        )
+        .toList();
+
+    return types;
   }
 }

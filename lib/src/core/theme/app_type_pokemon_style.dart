@@ -36,7 +36,7 @@ class AppTypePokemonStyle {
     },
     'Poison': {
       'type': 'Veneno',
-      'img': 'assets/images/types/poision.png',
+      'img': 'assets/images/types/poison.png',
       'color': AppColorGenerate.color(0xffB285AE),
       'typeColor': AppColorGenerate.color(0xffB567CF),
     },
