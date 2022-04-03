@@ -3,6 +3,7 @@ import 'package:get/route_manager.dart';
 import 'package:pokedex_v2/src/core/bindings/app_bindings.dart';
 import 'package:pokedex_v2/src/core/theme/app_theme.dart';
 
+import 'modules/pokemon_details/pokemon_details_module.dart';
 import 'modules/pokemon_list/pokemon_list_module.dart';
 
 class App extends StatelessWidget {
@@ -18,6 +19,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       getPages: [
         PokemonListModule().route,
+        PokemonDetailsModule().route,
       ],
     );
   }

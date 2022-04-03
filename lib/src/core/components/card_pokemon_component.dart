@@ -12,9 +12,11 @@ import 'bg_rotate_component.dart';
 class CardPokemonComponent extends StatelessWidget {
   const CardPokemonComponent({
     Key? key,
+    required this.func,
     required this.pokemon,
   }) : super(key: key);
 
+  final Function() func;
   final PokemonModel pokemon;
 
   @override
@@ -22,57 +24,60 @@ class CardPokemonComponent extends StatelessWidget {
     final MaterialColor color =
         AppTypePokemonStyle.typePokemon[pokemon.typeofpokemon.first]['typeColor'];
 
-    return Container(
-      decoration: BoxDecoration(
-        color: color.shade200,
-        borderRadius: BorderRadius.circular(
-          AppDimension.size_1,
+    return GestureDetector(
+      onTap: func,
+      child: Container(
+        decoration: BoxDecoration(
+          color: color.shade200,
+          borderRadius: BorderRadius.circular(
+            AppDimension.size_1,
+          ),
         ),
-      ),
-      child: Stack(
-        children: [
-          Positioned(
-            right: 0,
-            bottom: -20,
-            child: BgRotateComponent(
-              size: 120,
-              color: color,
+        child: Stack(
+          children: [
+            Positioned(
+              right: 0,
+              bottom: -20,
+              child: BgRotateComponent(
+                size: 120,
+                color: color,
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: AppDimension.size_1,
-              horizontal: AppDimension.size_2,
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                vertical: AppDimension.size_1,
+                horizontal: AppDimension.size_2,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        pokemon.id,
+                        style: AppFonts.bodySmall(),
+                      ),
+                      Text(
+                        pokemon.name,
+                        style: AppFonts.bodyLarge(),
+                      ),
+                      Row(
+                        children: [
+                          ..._buildTypes(),
+                        ],
+                      )
+                    ],
+                  ),
+                  CachedNetworkImage(
+                    imageUrl: pokemon.imageurl,
+                    height: 68,
+                  )
+                ],
+              ),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      pokemon.id,
-                      style: AppFonts.bodySmall(),
-                    ),
-                    Text(
-                      pokemon.name,
-                      style: AppFonts.bodyLarge(),
-                    ),
-                    Row(
-                      children: [
-                        ..._buildTypes(),
-                      ],
-                    )
-                  ],
-                ),
-                CachedNetworkImage(
-                  imageUrl: pokemon.imageurl,
-                  height: 68,
-                )
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

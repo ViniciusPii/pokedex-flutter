@@ -4,4 +4,5 @@ abstract class PokemonService {
   Future<List<PokemonModel>> getAll();
   Future<List<PokemonModel>> getGenerationPokemons(int generation);
   Future<List<PokemonModel>> getPokemonByName(String name, int generation);
+  Future<List<PokemonModel>> getEvolutions(List<String> evolutions, int generation);
 }

@@ -11,29 +11,44 @@ class PokemonServiceImpl implements PokemonService {
 
   final PokemonRepository _pokemonRepository;
 
+  List<PokemonModel> _pokemons = [];
+
   @override
   Future<List<PokemonModel>> getAll() => _pokemonRepository.getAll();
 
   @override
   Future<List<PokemonModel>> getGenerationPokemons(int generation) async {
-    final List<PokemonModel> _pokemonGeneration = await getAll();
+    _pokemons = await getAll();
 
-    if (generation == 1) return _pokemonGeneration.getRange(0, 151).toList();
-    if (generation == 2) return _pokemonGeneration.getRange(151, 251).toList();
-    if (generation == 3) return _pokemonGeneration.getRange(251, 386).toList();
-    if (generation == 4) return _pokemonGeneration.getRange(386, 493).toList();
-    if (generation == 5) return _pokemonGeneration.getRange(493, 649).toList();
-    if (generation == 6) return _pokemonGeneration.getRange(649, 721).toList();
-    if (generation == 7) return _pokemonGeneration.getRange(721, 809).toList();
+    if (generation == 1) return _pokemons.getRange(0, 151).toList();
+    if (generation == 2) return _pokemons.getRange(151, 251).toList();
+    if (generation == 3) return _pokemons.getRange(251, 386).toList();
+    if (generation == 4) return _pokemons.getRange(386, 493).toList();
+    if (generation == 5) return _pokemons.getRange(493, 649).toList();
+    if (generation == 6) return _pokemons.getRange(649, 721).toList();
+    if (generation == 7) return _pokemons.getRange(721, 809).toList();
 
-    return _pokemonGeneration;
+    return _pokemons;
   }
 
   @override
   Future<List<PokemonModel>> getPokemonByName(String name, int generation) async {
-    final _pokemonByName = await getGenerationPokemons(generation);
-    return _pokemonByName
+    _pokemons = await getGenerationPokemons(generation);
+    return _pokemons
         .where((element) => element.name.toLowerCase().contains(name.toLowerCase()))
         .toList();
+  }
+
+  @override
+  Future<List<PokemonModel>> getEvolutions(List<String> evolutions, int generation) async {
+    _pokemons = await getAll();
+    final List<PokemonModel> _evolutions = [];
+
+    evolutions
+        .map((e) => _evolutions.add(
+              _pokemons.firstWhere((element) => element.id == e),
+            ))
+        .toList();
+    return _evolutions;
   }
 }
