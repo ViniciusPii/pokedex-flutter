@@ -9,6 +9,7 @@ import 'package:pokedex_v2/src/core/theme/app_fonts.dart';
 import 'package:pokedex_v2/src/models/pokemon_model.dart';
 import 'package:pokedex_v2/src/modules/pokemon_details/widgets/about.dart';
 import 'package:pokedex_v2/src/modules/pokemon_details/widgets/evolutions.dart';
+import 'package:pokedex_v2/src/modules/pokemon_details/widgets/status.dart';
 
 class Content extends StatelessWidget {
   const Content({
@@ -73,7 +74,9 @@ class Content extends StatelessWidget {
                           pokemons: evolutions,
                           id: pokemon.id,
                         ),
-                        const Text('status'),
+                        Status(
+                          pokemon: pokemon,
+                        ),
                       ],
                     ),
                   )

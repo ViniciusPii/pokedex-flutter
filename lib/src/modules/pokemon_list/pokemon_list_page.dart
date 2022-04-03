@@ -52,12 +52,7 @@ class PokemonListPage extends GetView<PokemonListController> {
                       itemBuilder: (_, int index) {
                         final PokemonModel pokemon = controller.pokemons[index];
                         return CardPokemonComponent(
-                          func: () => Get.toNamed(
-                            'pokemon/details',
-                            arguments: {
-                              'pokemon': pokemon,
-                            },
-                          ),
+                          func: () => controller.goToDetails(pokemon),
                           pokemon: pokemon,
                         );
                       },

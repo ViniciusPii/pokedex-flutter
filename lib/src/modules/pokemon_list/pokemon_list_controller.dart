@@ -23,8 +23,26 @@ class PokemonListController extends GetxController {
     getAll();
   }
 
-  Future<void> getAll() async => _pokemons(await _pokemonService.getGenerationPokemons(1));
+  @override
+  void onClose() {
+    super.onClose();
+    nameEC.dispose();
+  }
+
+  Future<void> getAll() async => _pokemons(await _pokemonService.getGenerationPokemons(8));
 
   Future<void> getPokemonByName() async =>
-      _pokemons(await _pokemonService.getPokemonByName(nameEC.text, 1));
+      _pokemons(await _pokemonService.getPokemonByName(nameEC.text, 8));
+
+  void goToDetails(PokemonModel pokemon) {
+    nameEC.clear();
+    Get.focusScope!.unfocus();
+    Get.toNamed(
+      'pokemon/details',
+      arguments: {
+        'pokemon': pokemon,
+      },
+    )!
+        .whenComplete(() => getAll());
+  }
 }
