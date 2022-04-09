@@ -35,12 +35,13 @@ class PokemonServiceImpl implements PokemonService {
   Future<List<PokemonModel>> getPokemonByName(String name, int generation) async {
     _pokemons = await getGenerationPokemons(generation);
     return _pokemons
-        .where((element) => element.name.toLowerCase().contains(name.toLowerCase()))
+        .where((element) =>
+            element.name.toLowerCase().contains(name.toLowerCase()) || element.id.contains(name))
         .toList();
   }
 
   @override
-  Future<List<PokemonModel>> getEvolutions(List<String> evolutions, int generation) async {
+  Future<List<PokemonModel>> getEvolutions(List<String> evolutions) async {
     _pokemons = await getAll();
     final List<PokemonModel> _evolutions = [];
 

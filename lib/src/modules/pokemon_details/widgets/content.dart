@@ -32,28 +32,25 @@ class Content extends StatelessWidget {
           decoration: BoxDecoration(
             color: AppColors.white,
             borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(AppDimension.size_2),
-              topRight: Radius.circular(AppDimension.size_2),
+              topLeft: Radius.circular(AppDimension.size_3),
+              topRight: Radius.circular(AppDimension.size_3),
             ),
           ),
-          height: Get.height * 0.51,
+          height: Get.height * 0.61,
           child: DefaultTabController(
             length: 3,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: AppDimension.size_2,
-                horizontal: AppDimension.size_3,
-              ),
-              child: Column(
-                children: [
-                  TabBar(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: AppDimension.size_2,
+                    horizontal: AppDimension.size_3,
+                  ),
+                  child: TabBar(
                     labelStyle: AppFonts.bodyMedium(),
                     labelColor: AppExtension.textColor,
                     indicatorColor: color.shade200,
                     unselectedLabelColor: AppExtension.textColor,
-                    labelPadding: const EdgeInsets.symmetric(
-                      vertical: AppDimension.size_0,
-                    ),
                     tabs: const [
                       Tab(
                         text: 'Sobre',
@@ -66,22 +63,24 @@ class Content extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Expanded(
-                    child: TabBarView(
-                      children: [
-                        About(pokemon: pokemon),
-                        Evolutions(
-                          pokemons: evolutions,
-                          id: pokemon.id,
-                        ),
-                        Status(
-                          pokemon: pokemon,
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                ),
+                Expanded(
+                  child: TabBarView(
+                    children: [
+                      About(
+                        pokemon: pokemon,
+                      ),
+                      Evolutions(
+                        pokemons: evolutions,
+                        id: pokemon.id,
+                      ),
+                      Status(
+                        pokemon: pokemon,
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
           ),
         ),

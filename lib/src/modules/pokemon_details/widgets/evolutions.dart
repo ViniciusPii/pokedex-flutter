@@ -18,21 +18,26 @@ class Evolutions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: AppDimension.size_3,
-          ),
-          Text(
-            'Evoluções',
-            style: AppFonts.titleLarge(),
-          ),
-          const SizedBox(
-            height: AppDimension.size_1,
-          ),
-          ..._buildEvolutionList(),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppDimension.size_3,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: AppDimension.size_3,
+            ),
+            Text(
+              'Evoluções',
+              style: AppFonts.titleLarge(),
+            ),
+            const SizedBox(
+              height: AppDimension.size_1,
+            ),
+            ..._buildEvolutionList(),
+          ],
+        ),
       ),
     );
   }

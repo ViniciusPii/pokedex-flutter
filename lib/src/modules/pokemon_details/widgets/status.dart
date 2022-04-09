@@ -16,44 +16,55 @@ class Status extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: AppDimension.size_3,
-          ),
-          Text(
-            'Status',
-            style: AppFonts.titleLarge(),
-          ),
-          const SizedBox(
-            height: AppDimension.size_3,
-          ),
-          StatusPokemonComponent(
-            title: 'HP',
-            value: pokemon.hp,
-          ),
-          StatusPokemonComponent(
-            title: 'Ataque',
-            value: pokemon.attack,
-          ),
-          StatusPokemonComponent(
-            title: 'Defesa',
-            value: pokemon.defense,
-          ),
-          StatusPokemonComponent(
-            title: 'Ataque Especial',
-            value: pokemon.specialAttack,
-          ),
-          StatusPokemonComponent(
-            title: 'Defesa Especial',
-            value: pokemon.specialDefense,
-          ),
-          StatusPokemonComponent(
-            title: 'Velocidade',
-            value: pokemon.speed,
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppDimension.size_3,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: AppDimension.size_3,
+            ),
+            Text(
+              'Status',
+              style: AppFonts.titleLarge(),
+            ),
+            const SizedBox(
+              height: AppDimension.size_3,
+            ),
+            StatusPokemonComponent(
+              title: 'HP',
+              value: pokemon.hp,
+              type: pokemon.typeofpokemon.first,
+            ),
+            StatusPokemonComponent(
+              title: 'Ataque',
+              value: pokemon.attack,
+              type: pokemon.typeofpokemon.first,
+            ),
+            StatusPokemonComponent(
+              title: 'Defesa',
+              value: pokemon.defense,
+              type: pokemon.typeofpokemon.first,
+            ),
+            StatusPokemonComponent(
+              title: 'Ataque Especial',
+              value: pokemon.specialAttack,
+              type: pokemon.typeofpokemon.first,
+            ),
+            StatusPokemonComponent(
+              title: 'Defesa Especial',
+              value: pokemon.specialDefense,
+              type: pokemon.typeofpokemon.first,
+            ),
+            StatusPokemonComponent(
+              title: 'Velocidade',
+              value: pokemon.speed,
+              type: pokemon.typeofpokemon.first,
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -20,19 +20,22 @@ class TextFiledComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
         filled: true,
         isDense: true,
+        isCollapsed: true,
         suffixIcon: Icon(
           Icons.search,
           color: AppExtension.textColor,
         ),
         contentPadding: const EdgeInsets.symmetric(
-          vertical: AppDimension.size_1,
           horizontal: AppDimension.size_3,
         ),
         hintText: hint,
-        hintStyle: AppFonts.bodyMedium(),
+        hintStyle: AppFonts.bodyMedium(
+          color: AppExtension.textLightColor,
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppDimension.size_4),
           borderSide: const BorderSide(

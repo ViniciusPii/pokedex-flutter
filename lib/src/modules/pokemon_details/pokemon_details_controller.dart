@@ -23,5 +23,5 @@ class PokemonDetailsController extends GetxController {
   }
 
   Future<void> getEvolutions() async =>
-      _evolutions(await _pokemonService.getEvolutions(pokemon.evolutions, 1));
+      _evolutions(await _pokemonService.getEvolutions(pokemon.evolutions));
 }

@@ -22,7 +22,7 @@ class HeaderContent extends StatelessWidget {
     return Container(
       color: color.shade200,
       width: Get.width,
-      height: Get.height * 0.4,
+      height: Get.height * 0.35,
       child: Stack(
         children: [
           Positioned(
@@ -38,24 +38,31 @@ class HeaderContent extends StatelessWidget {
               vertical: AppDimension.size_2,
               horizontal: AppDimension.size_3,
             ),
-            child: Column(
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  pokemon.id,
-                  style: AppFonts.bodyMedium(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      pokemon.id,
+                      style: AppFonts.bodyMedium(),
+                    ),
+                    const SizedBox(
+                      height: AppDimension.size_0,
+                    ),
+                    Text(
+                      pokemon.name,
+                      style: AppFonts.headlineSmall(),
+                    ),
+                    const SizedBox(
+                      height: AppDimension.size_0,
+                    ),
+                  ],
                 ),
-                const SizedBox(
-                  height: AppDimension.size_0,
-                ),
-                Text(
-                  pokemon.name,
-                  style: AppFonts.headlineSmall(),
-                ),
-                const SizedBox(
-                  height: AppDimension.size_0,
-                ),
-                Row(
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ..._buildTypes(),
                   ],
@@ -69,25 +76,23 @@ class HeaderContent extends StatelessWidget {
   }
 
   List<Widget> _buildTypes() {
-    final List<Widget> _types = [];
+    return Iterable<int>.generate(pokemon.typeofpokemon.length).map((index) {
+      final String img = AppTypePokemonStyle.getTypeImage(pokemon.typeofpokemon[index]);
+      final String type = AppTypePokemonStyle.getTypeName(pokemon.typeofpokemon[index]);
 
-    pokemon.typeofpokemon
-        .map(
-          (type) => _types.add(
-            Row(
-              children: [
-                Image.asset(
-                  '${AppTypePokemonStyle.typePokemon[type]['img']}',
-                  height: AppDimension.size_3,
-                  color: AppExtension.textColor,
-                ),
-                Text('${AppTypePokemonStyle.typePokemon[type]['type']}')
-              ],
-            ),
+      return Row(
+        children: [
+          Image.asset(
+            img,
+            height: AppDimension.size_3,
+            color: AppExtension.textColor,
           ),
-        )
-        .toList();
-
-    return _types;
+          Text(
+            type,
+            style: AppFonts.bodyMedium(),
+          )
+        ],
+      );
+    }).toList();
   }
 }

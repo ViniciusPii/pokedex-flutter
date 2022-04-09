@@ -21,8 +21,7 @@ class CardPokemonComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MaterialColor color =
-        AppTypePokemonStyle.typePokemon[pokemon.typeofpokemon.first]['typeColor'];
+    final MaterialColor color = AppTypePokemonStyle.getTypeColor(pokemon.typeofpokemon.first);
 
     return GestureDetector(
       onTap: func,
@@ -83,20 +82,15 @@ class CardPokemonComponent extends StatelessWidget {
   }
 
   List<Widget> _buildTypes() {
-    List<Widget> types = [];
-
-    pokemon.typeofpokemon
-        .map(
-          (e) => types.add(
-            Image.asset(
-              AppTypePokemonStyle.typePokemon[e]['img'],
-              height: AppDimension.size_3,
-              color: AppExtension.textColor,
-            ),
-          ),
-        )
-        .toList();
-
-    return types;
+    return Iterable<int>.generate(pokemon.typeofpokemon.length).map(
+      (index) {
+        final String img = AppTypePokemonStyle.getTypeImage(pokemon.typeofpokemon[index]);
+        return Image.asset(
+          img,
+          height: AppDimension.size_3,
+          color: AppExtension.textColor,
+        );
+      },
+    ).toList();
   }
 }

@@ -39,7 +39,7 @@ class PokemonListPage extends GetView<PokemonListController> {
                   height: AppDimension.size_3,
                 ),
                 TextFiledComponent(
-                  hint: 'Procure seu pokemon',
+                  hint: 'Procure por nome ou id',
                   controller: controller.nameEC,
                   func: (_) => controller.getPokemonByName(),
                 ),

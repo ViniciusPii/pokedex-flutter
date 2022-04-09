@@ -113,4 +113,8 @@ class AppTypePokemonStyle {
       'typeColor': AppColorGenerate.color(0xff89ABE3),
     }
   };
+
+  static getTypeImage(String type) => typePokemon[type]['img'];
+  static getTypeName(String type) => typePokemon[type]['type'];
+  static getTypeColor(String type) => typePokemon[type]['typeColor'];
 }

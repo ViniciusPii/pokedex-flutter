@@ -12,7 +12,7 @@ class PokemonDetailsPage extends GetView<PokemonDetailsController> {
   @override
   Widget build(BuildContext context) {
     final MaterialColor color =
-        AppTypePokemonStyle.typePokemon[controller.pokemon.typeofpokemon.first]['typeColor'];
+        AppTypePokemonStyle.getTypeColor(controller.pokemon.typeofpokemon.first);
 
     return Scaffold(
       appBar: AppBar(
